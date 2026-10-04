@@ -405,11 +405,15 @@ recoverable rather than prevented.
   `ai-layer.md`; `modules.md` stayed, because its subject is still real. `git log` keeps all five.
   The multi-channel ambition the OpenClaw document was the only record of is now a paragraph in
   `docs/features/telegram.md`, which is where anyone would look for it.
-- **Two changelogs.** `CHANGELOG.md` had stopped at 1.3.0 while `src/lib/changelog-data.ts` runs to
-  2.5.0 and ships inside the app. I have hand-written the catch-up. The permanent fix is to
-  **generate `CHANGELOG.md` from `changelog-data.ts`** — roughly thirty lines, and it removes the
-  failure mode rather than repairing it. Both files are load-bearing for different readers, which is
-  exactly why hand-maintaining both produced the drift.
+- **Two changelogs — settled 2026-10-04: there is one.** `CHANGELOG.md` had stopped at 1.3.0 while
+  `src/lib/changelog-data.ts` ran to 2.5.0 and shipped inside the app. The fix considered here was
+  to generate the markdown from the TypeScript; the fix taken was to **delete the markdown**, which
+  is the same removal of the failure mode without the thirty lines of generator to maintain. The
+  app's changelog dialog was always the copy anyone actually read. `git log` keeps the old file.
+- **`TODO.md` went with it, 2026-10-04.** 312 lines and 113 unchecked boxes, almost all of it
+  phases 16 and 17 derived from the documents now in `docs/intent/` — a backlog for a product
+  shape that this one diverged from. This roadmap is the live plan; two plans is the same failure
+  as two changelogs. `git log` keeps it.
 
 ---
 

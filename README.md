@@ -84,7 +84,8 @@ ollama pull llama3.2:3b
 
 ## Release history
 
-See [`CHANGELOG.md`](./CHANGELOG.md), or the changelog dialog inside the app
+See the changelog dialog inside the app — it reads `src/lib/changelog-data.ts`, which is the
+only changelog now
 (`src/lib/changelog-data.ts`). The app version has read 2.5.0 since April while the Rust backend,
 the wealth surface, the Telegram bot and the DeFi rewrite shipped underneath it — those are
 recorded by date rather than by version.

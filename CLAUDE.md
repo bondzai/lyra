@@ -201,7 +201,7 @@ them to build.
 | shipping | `docs/operations/deployment.md` |
 | moving it to the mini PC | `docs/operations/handoff-to-the-mini-pc.md` |
 | setting up a dev machine | `docs/operations/setup.md` |
-| what happens next | `docs/assistant-roadmap.md`, `TODO.md` |
+| what happens next | `docs/assistant-roadmap.md` |
 
 Everything in `docs/intent/` — the vision, the assistant's intended voice, the earlier design
 specifications — is **older than the code** and describes intent, not state. Useful for *why*;
