@@ -302,7 +302,7 @@ Severity is `warning` and never `critical`: a job that failed at 3am is not wort
 critical is the level that pierces quiet hours.
 
 The mechanics — one message per tick however many died, and the `job_effects` mark that makes
-"already mentioned" per job rather than per timestamp — are in `docs/jobs.md` §5.
+"already mentioned" per job rather than per timestamp — are in `docs/architecture/jobs.md` §5.
 
 **The first report after deploying this may name several jobs at once**, because the queue keeps dead
 rows for fourteen days and nothing has ever reported them. That is a backlog being drained, not a new

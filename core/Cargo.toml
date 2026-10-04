@@ -9,6 +9,10 @@ rust-version = "1.97"
 
 # Release profile for the mini PC: one small, fast binary. `lto = "fat"` and a single
 # codegen unit cost build time we only pay on deploy, not during the port.
+[profile.dev]
+# Full debuginfo made target/debug grow past 20 GB; line tables still give usable backtraces.
+debug = "line-tables-only"
+
 [profile.release]
 lto = "fat"
 codegen-units = 1

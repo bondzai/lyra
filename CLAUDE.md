@@ -24,7 +24,9 @@ src/                  React 19 + TypeScript + Vite
   pages/              one directory or file per module
   stores/             zustand; `persist` writes to localStorage under `lyra:*`
 ops/                  the two service installers and the release puller
-docs/                 see docs/README.md — it is a curated index, keep it that way
+docs/                 architecture/ how it is built · features/ what it does
+                      operations/ running it · intent/ older than the code
+                      docs/README.md is the index — keep it curated
 ```
 
 `lyra-api` serves the API **and** the built front end (`LYRA_UI_DIR`), so in production there is one
@@ -66,7 +68,7 @@ Two gates cannot run here and are not your fault if they do not:
 
 - **Parity** (`make parity`) diffs the Rust port against a Python oracle in a sibling repo that must
   be running on `:8000`. Tolerance is 0.5%. **Adding a field to a gated response fails the diff** —
-  that is intended. See `docs/parity.md`.
+  that is intended. See `docs/operations/parity.md`.
 - **The visual sweep** (`make visual`) drives a real Chrome.
 
 ## Invariants — breaking these is how this project gets hurt
@@ -94,7 +96,7 @@ and it is worth knowing which is which before you touch any of them:
   `no_tool_accepts_anything_resembling_a_signing_input` in `tools.rs` — not by the compiler. Treat
   those two as load-bearing and do not relax them to make something convenient.
 
-`docs/mcp.md` explains what each guarantee actually buys.
+`docs/features/mcp.md` explains what each guarantee actually buys.
 
 **One writer.** The Telegram bot long-polls `getUpdates`, so two running instances fight over updates
 and drop them, and both send the daily digest. There is no safe overlap between the laptop service
@@ -177,31 +179,35 @@ runner on a public repo executes code from anyone's pull request — on a machin
 with the database on it. Do not add a self-hosted runner. Do not put secrets in CI: nothing needs
 them to build.
 
-`docs/deployment.md` is the full procedure, including moving the database and the WSL specifics.
+`docs/operations/deployment.md` is the full procedure, including moving the database and the WSL specifics.
 
 ## Where to read next
 
 | If you are working on | Read |
 |---|---|
 | anything, first | `docs/README.md` — the index |
-| the backend's shape | `docs/architecture.md`, `docs/api-server.md` |
-| the job queue | `docs/jobs.md` |
-| workspaces and authored context | `docs/workspaces.md` |
-| notifications, routing, channels, schedules | `docs/notifications.md` |
-| notes, search, the second brain | `docs/second-brain.md` |
-| other systems, the decision inbox | `docs/systems.md` |
-| alert rules | `docs/alerts.md` |
-| the Telegram surface | `docs/telegram.md` |
-| the MCP server | `docs/mcp.md` |
-| entities, schema | `docs/core-engine.md` |
-| the frontend's modules | `docs/modules.md` |
-| wealth numbers | `docs/parity.md` — read this before changing any wealth response |
-| shipping | `docs/deployment.md` |
-| moving it to the mini PC | `docs/handoff-to-the-mini-pc.md` |
+| the backend's shape | `docs/architecture/architecture.md`, `docs/architecture/api-server.md` |
+| the job queue | `docs/architecture/jobs.md` |
+| workspaces and authored context | `docs/features/workspaces.md` |
+| notifications, routing, channels, schedules | `docs/features/notifications.md` |
+| notes, search, the second brain | `docs/features/second-brain.md` |
+| other systems, the decision inbox | `docs/features/systems.md` |
+| alert rules | `docs/features/alerts.md` |
+| the Telegram surface | `docs/features/telegram.md` |
+| the MCP server | `docs/features/mcp.md` |
+| entities, schema | `docs/architecture/core-engine.md` |
+| the frontend's modules | `docs/architecture/modules.md` |
+| wealth numbers | `docs/operations/parity.md` — read this before changing any wealth response |
+| shipping | `docs/operations/deployment.md` |
+| moving it to the mini PC | `docs/operations/handoff-to-the-mini-pc.md` |
+| setting up a dev machine | `docs/operations/setup.md` |
 | what happens next | `docs/assistant-roadmap.md`, `TODO.md` |
 
-`VISION.md` and the two design-intent documents in `docs/` are older than the code and describe
-intent, not state. They are useful for *why*; never cite them for *what is*.
+Everything in `docs/intent/` — the vision, the assistant's intended voice, the earlier design
+specifications — is **older than the code** and describes intent, not state. Useful for *why*;
+never cite it for *what is*. That is the whole reason it sits in its own folder behind its own
+warning: left beside the documents that describe the running system, a 561-line vision reads as a
+feature list.
 
 ## Things that look broken and are not
 
@@ -212,6 +218,6 @@ intent, not state. They are useful for *why*; never cite them for *what is*.
 - **The first alert sweep after a fresh `alert_state` is silent.** It baselines without sending. The
   second one is not silent, and it messages a real phone.
 - **A blank wealth page with a healthy server** is a missing environment variable, not a crash. That
-  is by design — see `docs/deployment.md` §7.1.
+  is by design — see `docs/operations/deployment.md` §7.1.
 - **`dev-knowledge/*.md` are fixtures**, not documentation. The knowledge module reads them through
   `LYRA_KNOWLEDGE_PATH` and needs their frontmatter.

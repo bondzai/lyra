@@ -67,7 +67,7 @@ This is a single-user box whose wallets are already configured server-side. An e
 still wins, and a *malformed* one is still a 400 — the fallback covers "you did not say", never
 "you said something wrong".
 
-Whether the port is faithful is not a matter of opinion: see [the parity harness](./parity.md),
+Whether the port is faithful is not a matter of opinion: see [the parity harness](../operations/parity.md),
 which diffs this server against the Python one endpoint by endpoint.
 
 ## Routes that are not a port — 2026-09-17
@@ -115,7 +115,7 @@ Three constraints worth carrying forward:
    pool at a hundred thousand trillion dollars.
 3. **Gated responses cannot grow fields.** The four APR-provenance fields hang off the same
    `YieldOpportunity` the radar serves, so they are `skip_serializing_if`-absent and a test asserts
-   they serialise away on that path. See [parity §Adding an endpoint](./parity.md#adding-an-endpoint).
+   they serialise away on that path. See [parity §Adding an endpoint](../operations/parity.md#adding-an-endpoint).
 
 ## Two hazards to know before trusting a number
 
@@ -133,13 +133,13 @@ Three constraints worth carrying forward:
 
 ## Configuration
 
-See [Deployment §7](./deployment.md) for the full table. The short version: `JWT_SECRET` is
+See [Deployment §7](../operations/deployment.md) for the full table. The short version: `JWT_SECRET` is
 required, `LYRA_DB` defaults to `data/lyra.db`, and everything wealth-related is optional — the
 server starts and serves every route without it, reporting an empty book.
 
 ## The Telegram command bot — 2026-08-22
 
-> **Moved.** The full account now lives in [`docs/telegram.md`](./telegram.md), because the bot
+> **Moved.** The full account now lives in [`docs/features/telegram.md`](../features/telegram.md), because the bot
 > stopped being an implementation detail of an HTTP server the moment it became the plan. What
 > follows is kept here as the record of why polling and the owner pin exist; the write boundary,
 > the 4096-character limit and the no-server-inference constraint are in the new file.

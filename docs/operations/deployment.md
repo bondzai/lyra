@@ -316,12 +316,12 @@ rather than a crash** — which is why §6 lists it.
 | `TELEGRAM_BOT_TOKEN` | — | Unset, `/alerts/test` and `/alerts/digest` answer `400` and the sweep still runs, recording state without sending. That is the right first-boot state |
 | `TELEGRAM_CHAT_ID` | — | Where alerts go |
 | `TELEGRAM_OWNER_USER_ID` | — | Which row in `users` the life commands read, for `/today`, `/next`, `/inbox`, `/week` and the habits nudge. Unset with exactly one user is fine — it is inferred. Unset with several, or naming a user that does not exist, leaves the money commands working and the life commands declining |
-| `DISCORD_WEBHOOK_URL` | — | The second channel. **The whole URL is the credential** — its last path segment is a token, so anyone holding it can post to that channel. The host is checked on construction, so a typo fails rather than posting your portfolio somewhere else. **Setting this turns on live delivery to a live channel.** See [Alerts](./alerts.md) |
+| `DISCORD_WEBHOOK_URL` | — | The second channel. **The whole URL is the credential** — its last path segment is a token, so anyone holding it can post to that channel. The host is checked on construction, so a typo fails rather than posting your portfolio somewhere else. **Setting this turns on live delivery to a live channel.** See [Alerts](../features/alerts.md) |
 | `ALERT_INTERVAL` | `900` | Seconds between sweeps |
 | `SNAPSHOT_INTERVAL` | — | Seconds between net-worth snapshots |
 | `SNAPSHOT_GROUP` | — | Group the snapshot cron writes under |
 | `DIGEST_HOUR` | — | **Local** hour for the daily brief. **Unset means no digest is ever sent** |
-| `HABITS_NUDGE_HOUR` | — | **Local** hour to message you about recurrences that are due. **Unset means never**, which is the default: the daily brief already arrives, and a second unsolicited message is a choice rather than a setting to find and turn off. Reads `schedules`; writes nothing, and never touches `nextDue` — see [Core engine](./core-engine.md) |
+| `HABITS_NUDGE_HOUR` | — | **Local** hour to message you about recurrences that are due. **Unset means never**, which is the default: the daily brief already arrives, and a second unsolicited message is a choice rather than a setting to find and turn off. Reads `schedules`; writes nothing, and never touches `nextDue` — see [Core engine](../architecture/core-engine.md) |
 | `ALERT_FEE_USD` | — | Claimable threshold that triggers a harvest nudge |
 | `ALERT_HF` | — | Health factor below which a borrow is called out |
 | `ALERT_REPORT_CCY` | — | Currency the digest reports in |
@@ -374,7 +374,7 @@ It refuses to start if any signing variable (`PRIVATE_KEY`, `MNEMONIC`, `SEED_PH
 environment, and refuses any `MCP_TRANSPORT` but stdio. Both exit 1 with the reason on stderr.
 
 **The tool surface, the read-only invariant and what each guarantee actually buys are in
-[`docs/mcp.md`](./mcp.md).** This section is build-and-register only.
+[`docs/features/mcp.md`](../features/mcp.md).** This section is build-and-register only.
 
 ---
 

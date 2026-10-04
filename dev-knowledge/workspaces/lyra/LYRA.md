@@ -27,7 +27,7 @@ me an afternoon.
 ## What is expensive to get wrong
 
 The wealth module reads real wallets and a real exchange. There is no staging environment and no
-second user, so a bug here sends a wrong number about my money to my phone. Treat `docs/parity.md`
+second user, so a bug here sends a wrong number about my money to my phone. Treat `docs/operations/parity.md`
 as binding before changing any wealth response.
 
 Migrations are append-only. An older binary cannot open a newer database.

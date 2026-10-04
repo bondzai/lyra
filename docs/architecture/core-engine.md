@@ -52,7 +52,7 @@ AI context builders, which is why setting that one field makes the velocity pane
 code. **Nothing validates it.** The API accepts any string, so a dangling id is possible and reads
 as "Unknown (deleted)" rather than as unassigned — a deliberate distinction, since delete does not
 cascade. A model writing this field needs the check a human gets from a dropdown; see
-[the roadmap](./assistant-roadmap.md).
+[the roadmap](../assistant-roadmap.md).
 
 ### Tracker
 
@@ -104,7 +104,7 @@ The job queue landed as a separate `jobs` table, and the bridge is one-direction
 `schedule.tick` job reads `schedules WHERE isActive = 1 AND nextDue <= today` and *enqueues* a
 `deliver.telegram` job naming what is due. It never writes `nextDue` — advancing a recurrence is
 something you do by completing it — so `schedules` never learns the queue exists. See
-[`docs/jobs.md`](./jobs.md).
+[`docs/architecture/jobs.md`](./jobs.md).
 
 ### Relation
 

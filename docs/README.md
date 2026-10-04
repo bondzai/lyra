@@ -10,50 +10,56 @@ happening again is to say, on the index, which kind each one is.
 invariants, the mistakes already made here, what the gate is, and what "done" means. This index tells
 you where things are documented; that file tells you what will bite you.
 
-## What runs now
+## Where things are
+
+Four folders, by the question you are asking.
+
+| If you want to know | Look in |
+|---|---|
+| how it is built | [`architecture/`](./architecture/) |
+| what it does | [`features/`](./features/) |
+| how to run, deploy or move it | [`operations/`](./operations/) |
+| why it was ever meant to look like this | [`intent/`](./intent/) — **older than the code** |
+
+## How it is built
 
 | Document | Description |
 |---|---|
-| [Architecture](./architecture.md) | The real topology, the four ways into Lyra's data, and where inference happens |
-| [API server](./api-server.md) | The Rust API — stack, route groups, auth, and the two hazards |
-| [MCP](./mcp.md) | The research desk: seventeen tools, the read-only invariant, and the three things called "MCP" here |
-| [Telegram](./telegram.md) | The command bot — the assistant's front door: money, life and queue commands |
-| [Notifications](./notifications.md) | Groups, routing, channels, schedules, and the sealed webhook credential — how anything reaches your phone |
-| [Alerts](./alerts.md) | `lyra-alerts`: rules, digests, the Telegram and Discord channels, and their containment |
-| [Core engine](./core-engine.md) | Entity, Tracker, Schedule and Relation — and why `schedules` is not the job queue |
-| [Jobs](./jobs.md) | The queue: lanes, leases, idempotency, backoff, the dead letter, and how to add a kind |
-| [Second brain](./second-brain.md) | One index over your notes and markdown files, FTS5 search, and why not embeddings first |
-| [Systems](./systems.md) | Lyra as chief of staff: the other systems it speaks for, the decisions they raise, and why the client is not in `lyra-mcp` |
-| [Workspaces](./workspaces.md) | Context you author per area of life — where it lives, how it is assembled, and what it is for |
-| [Modules](./modules.md) | The sidebar, the Projects type, and the DeFi page rewrite |
-| [Parity harness](./parity.md) | Gating the Rust port against the Python oracle |
-| [Handoff to the mini PC](./handoff-to-the-mini-pc.md) | The one-time cutover: merge, move the database, stop the Mac, start the box — in that order |
-| [Deployment](./deployment.md) | Running it on the mini PC — the one binary, the systemd unit, the CI pipeline that feeds it, moving the database, backups |
+| [Architecture](./architecture/architecture.md) | The real topology, the four ways into Lyra's data, and where inference happens |
+| [API server](./architecture/api-server.md) | The Rust API — stack, route groups, auth, and the two hazards |
+| [Core engine](./architecture/core-engine.md) | Entity, Tracker, Schedule and Relation — and why `schedules` is not the job queue |
+| [Jobs](./architecture/jobs.md) | The queue: lanes, leases, idempotency, backoff, the dead letter, and how to add a kind |
+| [Modules](./architecture/modules.md) | The sidebar, the Projects type, and the DeFi page rewrite |
 
-## The plan
+## What it does
 
 | Document | Description |
 |---|---|
-| [Assistant roadmap](./assistant-roadmap.md) | **Start here for what happens next.** Four parallel designs reconciled into one ordered plan, with the four decisions that gate it |
+| [Notifications](./features/notifications.md) | Groups, routing, channels, schedules, and the sealed webhook credential — how anything reaches your phone |
+| [Systems](./features/systems.md) | Lyra as chief of staff: the other systems it speaks for, the decision inbox, and the hub |
+| [Second brain](./features/second-brain.md) | One index over your notes and markdown files, FTS5 search, backlinks, and why not embeddings first |
+| [Alerts](./features/alerts.md) | `lyra-alerts`: rules, digests, the Telegram and Discord channels, and their containment |
+| [Telegram](./features/telegram.md) | The command bot — the assistant's front door: money, life and queue commands |
+| [MCP](./features/mcp.md) | The research desk: the read-only invariant, and the three things called "MCP" here |
+| [Workspaces](./features/workspaces.md) | Context you author per area of life — where it lives, how it is assembled, and what it is for |
 
-## Design intent — specs, not state
+## Running it
 
 | Document | Description |
 |---|---|
-| [Minimalist mind](./minimalist-mind-life-os.md) | The philosophy the Lean release came from |
-| [Strategic blueprint](./strategic-blueprint.md) | Where the system is meant to end up |
+| [Setup](./operations/setup.md) | Getting it running on a development machine |
+| [Deployment](./operations/deployment.md) | The mini PC — the one binary, the systemd unit, the CI pipeline that feeds it, moving the database, backups |
+| [Handoff to the mini PC](./operations/handoff-to-the-mini-pc.md) | The one-time cutover: merge, move the database, stop the Mac, start the box — in that order |
+| [Parity harness](./operations/parity.md) | Gating the Rust port against the Python oracle |
 
-> Five documents were deleted on 2026-09-25: `roadmap.md` and `openclaw-integration.md` (both
-> already bannered as historical; nothing in the OpenClaw one was ever built),
-> `productivity-features.md` and `improvements.md` (their specs shipped — Today, Inbox and Review
-> are pages, and the improvements list had no unchecked items left), and `ai-layer.md` (it
-> documented a deleted widget and knew nothing of the 26 files now under `src/core/ai/`). The one
-> paragraph worth keeping, on the three different things called MCP, moved to [MCP](./mcp.md).
-> `git log` has all five.
+## What happens next
 
-## Quick links
+| Document | Description |
+|---|---|
+| [Assistant roadmap](./assistant-roadmap.md) | The plan, its decisions, and what each is blocked on |
 
-- **Vision**: [`VISION.md`](../VISION.md) — the original design document, partly historical
-- **Voice**: [`soul.md`](../soul.md) — how Lyra speaks
-- **Changelog**: [`CHANGELOG.md`](../CHANGELOG.md), and `src/lib/changelog-data.ts` inside the app
-- **Source**: [`src/`](../src/) React 19 + TypeScript + Vite, [`core/`](../core/) the Rust workspace
+## Why it looks like this
+
+[`intent/`](./intent/) holds the documents written **before** the code — the vision, the assistant's
+intended voice, the earlier design specifications. They are useful for *why* and are
+[never to be cited for *what is*](./intent/README.md).

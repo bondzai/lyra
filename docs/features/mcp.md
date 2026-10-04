@@ -17,7 +17,7 @@ data at all.
 
 **Written 2026-09-21 against ten tools; updated the same day to seventeen**, when the life-OS read
 surface landed (roadmap B1 + B2). The expansion is argued in
-[the assistant roadmap](./assistant-roadmap.md). If the counts here and in the registry disagree,
+[the assistant roadmap](../assistant-roadmap.md). If the counts here and in the registry disagree,
 the registry is right.
 
 ---
@@ -85,7 +85,7 @@ So, concretely, with the desk pointed at a live database today:
 - the only row it can write anywhere is an append-only, versioned analysis.
 
 The first write tool is roadmap C2, and it arrives behind `LYRA_MCP_WRITE=1` in its own commit.
-See [`docs/assistant-roadmap.md` §1.3 and D1](./assistant-roadmap.md).
+See [`docs/assistant-roadmap.md` §1.3 and D1](../assistant-roadmap.md).
 
 ---
 
@@ -219,11 +219,11 @@ MCP tools read the same sources the HTTP layer does, so **a tool serving a parit
 inherits the gate's rule: that response cannot grow a field.** `core/parity.toml` diffs whole
 bodies at 0.5% tolerance with only `fetched_at` ignored. When a tool needs a field the gated shape
 does not carry, the move is a new ungated route — the same move `vfat-status` made — not a widened
-one. See [`docs/parity.md`](./parity.md).
+one. See [`docs/operations/parity.md`](../operations/parity.md).
 
 ## See also
 
-- [`docs/assistant-roadmap.md`](./assistant-roadmap.md) — the proposed life-OS expansion and the
+- [`docs/assistant-roadmap.md`](../assistant-roadmap.md) — the proposed life-OS expansion and the
   decision about this crate's invariant
-- [`docs/deployment.md` §7.2](./deployment.md) — build and register
-- [`docs/telegram.md`](./telegram.md) — the other way a model could reach this box
+- [`docs/operations/deployment.md` §7.2](../operations/deployment.md) — build and register
+- [`docs/features/telegram.md`](./telegram.md) — the other way a model could reach this box

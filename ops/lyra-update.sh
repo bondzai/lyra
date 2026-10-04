@@ -16,7 +16,7 @@
 # started by systemd as an unprivileged user; no install hook, no script from the payload.
 set -euo pipefail
 
-REPO="${LYRA_REPO:-bondzai/life-os-ui}"
+REPO="${LYRA_REPO:-bondzai/lyra}"
 PREFIX="/opt/lyra"
 ASSET="lyra-x86_64-linux.tar.gz"
 API="https://api.github.com/repos/$REPO/releases/latest"

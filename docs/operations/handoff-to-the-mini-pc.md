@@ -2,7 +2,7 @@
 
 A one-time cutover runbook. After it, the MacBook runs nothing and `bmax-b4-1` is the only Lyra.
 
-`docs/deployment.md` is the reference for each individual step; this is the **order**, and the
+`docs/operations/deployment.md` is the reference for each individual step; this is the **order**, and the
 things that are only true because you are moving a *running* install with real data in it rather
 than setting up a fresh one.
 
@@ -293,7 +293,7 @@ The box now takes its own nightly `VACUUM INTO` into `/opt/lyra/backups`, kept f
 missing, `/opt/lyra/data` not writable by `lyra`, or a stale `-wal` left beside the database.
 
 **It starts but every page is empty.** A missing environment variable, not a crash — see
-`docs/deployment.md` §7.1. The API is healthy; something it reads is unset.
+`docs/operations/deployment.md` §7.1. The API is healthy; something it reads is unset.
 
 **The Discord channel fails its test.** `LYRA_SECRET_KEY` does not match the one that sealed it.
 Fix the key and restart; if the original is genuinely lost, delete the channel and add it again

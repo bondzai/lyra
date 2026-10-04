@@ -160,4 +160,4 @@ AA contrast.
 
 No new tables, no new API endpoints, no new stores. `entities` is one table for every type, and
 type-specific fields live in the `metadata` JSON blob. See
-[`docs/core-engine.md`](./core-engine.md).
+[`docs/architecture/core-engine.md`](./core-engine.md).

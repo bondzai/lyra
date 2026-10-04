@@ -13,7 +13,7 @@ day from your phone, runs its background work on a durable job queue, and expose
 AI client over MCP.
 
 **Where it is going:** [`docs/assistant-roadmap.md`](./docs/assistant-roadmap.md) — commanding the
-whole thing from Telegram. The queue underneath it has landed; see [`docs/jobs.md`](./docs/jobs.md).
+whole thing from Telegram. The queue underneath it has landed; see [`docs/architecture/jobs.md`](./docs/architecture/jobs.md).
 
 ## Features
 
@@ -45,12 +45,12 @@ whole thing from Telegram. The queue underneath it has landed; see [`docs/jobs.m
 ### Reaching it from outside
 - **Telegram** — eighteen commands: eleven portfolio reads, four that read your day, and three for the
   queue, of which `/retry` and `/cancel` are the only two that write anything. Long-polled so nothing
-  is forwarded to this box, and only the pinned chat is ever answered ([docs](./docs/telegram.md))
+  is forwarded to this box, and only the pinned chat is ever answered ([docs](./docs/features/telegram.md))
 - **Discord** — the second alert channel; any channel succeeding counts as delivered
-  ([docs](./docs/alerts.md))
+  ([docs](./docs/features/alerts.md))
 - **MCP** — `lyra-mcp`, a stdio research desk with seventeen tools: ten wealth and seven life. It
   cannot sign — there is no rung for it on the capability ladder — and `save_analysis` is the only
-  tool that writes ([docs](./docs/mcp.md))
+  tool that writes ([docs](./docs/features/mcp.md))
 
 ### Lyra AI — in the browser
 - **Provider-agnostic** — Ollama locally, or any OpenAI-compatible endpoint

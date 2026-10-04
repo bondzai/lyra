@@ -1,7 +1,7 @@
 # Strategic Blueprint — INTJ Invisible Empire
 
 Source: JB's strategic identity conversation (March 2026).
-Companion to [minimalist-mind-life-os.md](minimalist-mind-life-os.md).
+Companion to [minimalist-mind-life-os.md](./minimalist-mind-life-os.md).
 
 ---
 

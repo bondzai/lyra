@@ -132,7 +132,7 @@ Bodies past Discord's 4096-character embed limit are cut with a visible mark, be
 arrives shortened beats one that does not arrive. Telegram's own 4096 limit is handled differently
 and better: `split_for_telegram` splits an over-long message on blank lines, then newlines, then
 characters, so a long brief arrives as several messages rather than being truncated or refused. See
-[`docs/telegram.md` §6](./telegram.md).
+[`docs/features/telegram.md` §6](./telegram.md).
 
 ### Why an embed rather than plain text
 
@@ -152,19 +152,19 @@ carries them.
 | `ALERT_FEE_USD` / `ALERT_HF` / `ALERT_REPORT_CCY` | The thresholds and the reporting currency |
 
 Setting either channel turns on live delivery to a live phone or channel. See
-[Deployment §7.1](./deployment.md).
+[Deployment §7.1](../operations/deployment.md).
 
 ## 6. What the queue changes
 
 Today a failed alert send is logged and lost — `alert_loop` swallows the error, and the digest's
 day key is only written on success, so a Telegram outage at digest hour costs the day's brief
-silently. Stage D of [the assistant roadmap](./assistant-roadmap.md) turns delivery into a
+silently. Stage D of [the assistant roadmap](../assistant-roadmap.md) turns delivery into a
 `deliver.telegram` job with real backoff, which for a health-factor warning is the difference
 between an alarm and a log line.
 
 ## See also
 
-- [`docs/telegram.md`](./telegram.md) — the inbound half
-- [`docs/api-server.md`](./api-server.md) — where the sweep runs
-- [`docs/parity.md`](./parity.md) — why `alerts/test` and `alerts/digest` are excluded from the gate
+- [`docs/features/telegram.md`](./telegram.md) — the inbound half
+- [`docs/architecture/api-server.md`](../architecture/api-server.md) — where the sweep runs
+- [`docs/operations/parity.md`](../operations/parity.md) — why `alerts/test` and `alerts/digest` are excluded from the gate
   (a GET on either sends a real message)

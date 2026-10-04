@@ -12,7 +12,7 @@ costs a retry rather than the message.
 > built from it, and a test fails if two sections claim the same name, which would silently shadow
 > one of them in `handle()`.
 
-This document absorbs the section that lived in [`docs/api-server.md`](./api-server.md), because the
+This document absorbs the section that lived in [`docs/architecture/api-server.md`](../architecture/api-server.md), because the
 bot stopped being an implementation detail of an HTTP server the moment it became the plan.
 
 ---
@@ -83,7 +83,7 @@ title the model reads back on the next agenda call.
 The gate is correct as written. What it lacks is a test asserting `handle` is never called for a
 non-owner chat: the current tests cover `message_of` and `command_of` but not the gate itself,
 which is the one thing here that must never regress. See
-[`docs/assistant-roadmap.md` §4](./assistant-roadmap.md).
+[`docs/assistant-roadmap.md` §4](../assistant-roadmap.md).
 
 ## 4. Restart-safe, and rate-limited on the way back
 
@@ -146,7 +146,7 @@ server-side model client and nowhere for a model key to live in this process.
 So a command that needs natural language — *"what should I do today?"* — cannot be served at all
 today, however the command table grows. This is the single hardest constraint on "command it from
 Telegram", and it is the reason the roadmap treats deterministic commands as Phase 1 and inference
-as a flag-gated last phase. See [D2](./assistant-roadmap.md).
+as a flag-gated last phase. See [D2](../assistant-roadmap.md).
 
 ## 8. Replies are plain text on purpose
 
@@ -157,7 +157,7 @@ is silently never delivered.
 A `Message` now says whether its text is already marked up: `Message::plain` is escaped by whoever
 sends it, `Message::telegram_markup` is passed through. Escaping **strips** rather than
 backslash-escapes, because removal cannot produce an unbalanced entity, and a dropped `*` costs a
-glyph where a rejected message costs the whole alert. See [`docs/alerts.md`](./alerts.md).
+glyph where a rejected message costs the whole alert. See [`docs/features/alerts.md`](./alerts.md).
 
 The command bot keeps its own concrete `TelegramSender` rather than going through `Channels`: its
 replies go back to the chat that asked, which is not a fan-out.
@@ -170,7 +170,7 @@ replies go back to the chat that asked, which is not a fan-out.
 | `TELEGRAM_CHAT_ID` | The only chat answered. Also where alerts go |
 | `TELEGRAM_OWNER_USER_ID` | The row in `users` whose life `/today` and the rest read — **not** the chat id. Unset, the owner is resolved as the only user there is; unresolvable, the money commands still answer and the life commands decline with the name of this variable |
 
-The first two are also read by the alert sender; see [Deployment §7.1](./deployment.md).
+The first two are also read by the alert sender; see [Deployment §7.1](../operations/deployment.md).
 
 ## 10. What it becomes
 
@@ -189,11 +189,11 @@ Three things have not landed, and they are what is left of the plan:
   A new verb is therefore added twice, in two shapes, and the two can disagree about what exists —
   `sections()` only guarantees the three Telegram arrays agree with each other.
 
-See [`docs/assistant-roadmap.md`](./assistant-roadmap.md).
+See [`docs/assistant-roadmap.md`](../assistant-roadmap.md).
 
 ## See also
 
-- [`docs/assistant-roadmap.md`](./assistant-roadmap.md) — the plan and its four decisions
-- [`docs/jobs.md`](./jobs.md) — the queue `/jobs` reads and a late answer goes out through
-- [`docs/alerts.md`](./alerts.md) — the outbound half, and Discord
-- [`docs/api-server.md`](./api-server.md) — the process this runs inside
+- [`docs/assistant-roadmap.md`](../assistant-roadmap.md) — the plan and its four decisions
+- [`docs/architecture/jobs.md`](../architecture/jobs.md) — the queue `/jobs` reads and a late answer goes out through
+- [`docs/features/alerts.md`](./alerts.md) — the outbound half, and Discord
+- [`docs/architecture/api-server.md`](../architecture/api-server.md) — the process this runs inside

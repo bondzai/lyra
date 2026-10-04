@@ -19,7 +19,7 @@ so tightening them later is data rather than a migration.
 ## The client is in `lyra-api`, never in `lyra-mcp`
 
 `lyra-mcp`'s guarantee is that **no tool body can cause an effect** — there is no signing path to
-reach, and two tests hold the capability ladder shut (`docs/mcp.md` §1). A client that can call
+reach, and two tests hold the capability ladder shut (`docs/features/mcp.md` §1). A client that can call
 another system's *tools* is an effect path by definition, so putting one in that crate would quietly
 turn the read-only desk into a lever on the whole house while every existing test still passed.
 
@@ -116,7 +116,7 @@ So `answer` and `delivered_at` are separate columns. Answered-but-not-delivered 
 3. The tick's sweep enqueues one for anything still owed. Same key, so the belt and the braces are
    one job.
 4. It retries with the queue's backoff, and if it finally gives up the dead-letter reporter says so
-   — on the same phone (`docs/jobs.md` §5).
+   — on the same phone (`docs/architecture/jobs.md` §5).
 
 **The first answer wins.** `WHERE answered_at IS NULL` makes a second tap — the button pressed
 twice, a callback delivered twice — a no-op rather than a different instruction sent after the first
@@ -132,7 +132,7 @@ somewhere else, long after the tap that caused it.
 Sealed with `LYRA_SECRET_KEY` and the row id as AAD, exactly as a Discord webhook is — so a token
 cannot be lifted from one system's row into another's, and `SystemStore::token_of` is the one door.
 The screen gets a preview and never the value, which is why absence on a `PATCH` means "leave it
-alone". See `docs/notifications.md` § The credential for what that protects and what it does not.
+alone". See `docs/features/notifications.md` § The credential for what that protects and what it does not.
 
 A system with **no** token is allowed: a service on the same host behind Tailscale may not want one,
 and the row says so plainly rather than looking configured.

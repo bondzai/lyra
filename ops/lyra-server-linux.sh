@@ -43,7 +43,7 @@ ENV_FILE="/etc/lyra/lyra.env"
 SVC_USER="lyra"
 PORT="${PORT:-3030}"
 # Where ops/lyra-update.sh looks for releases. Overridable so a fork can point elsewhere.
-REPO="${LYRA_REPO:-bondzai/life-os-ui}"
+REPO="${LYRA_REPO:-bondzai/lyra}"
 
 die() { echo "error: $*" >&2; exit 1; }
 need_root() { [ "$(id -u)" = 0 ] || die "run this with sudo"; }

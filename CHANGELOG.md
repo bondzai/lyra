@@ -102,7 +102,7 @@ All notable changes to Lyra are documented here.
 #### Known
 - `/api/wealth/alerts` still reports `can_send` for Telegram alone, so a Discord-only box delivers
   alerts while the settings page says it cannot. That field is parity-gated; widening it would fail
-  the diff. Documented at `telegram_ready` and in [`docs/alerts.md`](./docs/alerts.md).
+  the diff. Documented at `telegram_ready` and in [`docs/features/alerts.md`](./docs/features/alerts.md).
 
 ### 2026-09-17 — Opportunities, and what pays an APR
 
@@ -144,7 +144,7 @@ never asked, and `portfolio` and `yield-radar` cannot grow fields without failin
   in. Eleven wealth commands, long-polled rather than webhooked because the box sits behind a home
   router with nothing forwarded. Only the pinned `TELEGRAM_CHAT_ID` is answered — a stranger's
   message is counted and dropped, never answered and never echoed. See
-  [`docs/telegram.md`](./docs/telegram.md).
+  [`docs/features/telegram.md`](./docs/features/telegram.md).
 - **Off-chain assets** get a server-side home, so the net-worth snapshot counts them.
 - **The book reads in USD, THB or sats.**
 - **Wallets are managed in the app**, and non-EVM ones stop being dropped.
@@ -173,7 +173,7 @@ never asked, and `portfolio` and `yield-radar` cannot grow fields without failin
 
 #### Added
 - `lyra-mcp`, the MCP research desk: ten wealth tools over a keyless portfolio, read-only by
-  construction. See [`docs/mcp.md`](./docs/mcp.md).
+  construction. See [`docs/features/mcp.md`](./docs/features/mcp.md).
 - Git-backed knowledge notes, the whole wealth surface on live data, and the deployment stack.
 
 ---

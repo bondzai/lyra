@@ -198,7 +198,7 @@ So when Lyra speaks through a channel rather than a page:
 - **Plain text, not markdown.** Entity titles and pool names are user and on-chain data and may
   contain `*` or `_`; the transport escapes them, and Telegram's escaping strips rather than
   backslash-escapes, because removal cannot produce an unbalanced entity. See
-  [`docs/alerts.md`](./docs/alerts.md).
+  [`docs/features/alerts.md`](../features/alerts.md).
 - **Discord gets an embed, not the Telegram text.** Two markdowns that look alike emphasise the
   same digest heading differently, so the text is translated on the way out rather than hoped over.
 

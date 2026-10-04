@@ -416,8 +416,8 @@ the only place a frame is produced.
 
 ## See also
 
-- [`docs/alerts.md`](./alerts.md) — what gets sent, and the channels `deliver.telegram` fans out to
-- [`docs/api-server.md`](./api-server.md) — where the workers are started from
-- [`docs/telegram.md`](./telegram.md) — the bot the queue commands live in
-- [`docs/assistant-roadmap.md`](./assistant-roadmap.md) — Stage D, and what is still missing from it
-- [`docs/deployment.md`](./deployment.md) — `LYRA_JOBS`, `HABITS_NUDGE_HOUR` and the settings
+- [`docs/features/alerts.md`](../features/alerts.md) — what gets sent, and the channels `deliver.telegram` fans out to
+- [`docs/architecture/api-server.md`](./api-server.md) — where the workers are started from
+- [`docs/features/telegram.md`](../features/telegram.md) — the bot the queue commands live in
+- [`docs/assistant-roadmap.md`](../assistant-roadmap.md) — Stage D, and what is still missing from it
+- [`docs/operations/deployment.md`](../operations/deployment.md) — `LYRA_JOBS`, `HABITS_NUDGE_HOUR` and the settings

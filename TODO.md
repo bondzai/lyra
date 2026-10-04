@@ -1,13 +1,13 @@
 # TODO
 
-See [`docs/minimalist-mind-life-os.md`](docs/minimalist-mind-life-os.md) for cognitive system philosophy.
-See [`docs/strategic-blueprint.md`](docs/strategic-blueprint.md) for INTJ strategic identity & invisible empire framework.
+See [`docs/intent/minimalist-mind-life-os.md`](./docs/intent/minimalist-mind-life-os.md) for cognitive system philosophy.
+See [`docs/intent/strategic-blueprint.md`](./docs/intent/strategic-blueprint.md) for INTJ strategic identity & invisible empire framework.
 
 ---
 
 ## Phase 17: Strategic Empire Layer
 
-Based on the [Strategic Blueprint](docs/strategic-blueprint.md) — features that evolve Lyra from productivity tool → strategic OS.
+Based on the [Strategic Blueprint](./docs/intent/strategic-blueprint.md) — features that evolve Lyra from productivity tool → strategic OS.
 
 ### 17a. War Mode Protocol (Level 2)
 
@@ -60,7 +60,7 @@ Foundation for Option C (AI OS Layer).
 
 ## Phase 16: Minimalist Mind System
 
-Based on the [Minimalist Mind](docs/minimalist-mind-life-os.md) cognitive architecture spec.
+Based on the [Minimalist Mind](./docs/intent/minimalist-mind-life-os.md) cognitive architecture spec.
 
 ### Coverage Matrix
 

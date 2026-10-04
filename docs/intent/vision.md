@@ -63,7 +63,7 @@ Authentication is lightweight — PIN or local password. No OAuth complexity nee
 
 > **Historical.** The diagram below is the Hono + Drizzle design, which was built and then
 > replaced. What runs is one Rust binary over SQLite — see
-> [`docs/architecture.md`](./docs/architecture.md).
+> [`docs/architecture/architecture.md`](../architecture/architecture.md).
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -193,7 +193,7 @@ Relation
 > Places, Travel, Memories and the rest — were deleted at v2.5.0 (the Lean release) and have not
 > returned. Wealth came back as the Rust-backed module; Projects came back as its own type in
 > September. The live list is `src/core/config/modules.ts`; see
-> [`docs/modules.md`](./docs/modules.md).
+> [`docs/architecture/modules.md`](../architecture/modules.md).
 
 Each module is a thin layer on top of the core engine. 30+ entity types are currently supported.
 
@@ -333,7 +333,7 @@ When the AI provider is offline or unavailable:
 > **Historical.** Written before the Lean release; several of the surfaces described here were
 > deleted with the Lyra page. The detectors and the morning brief survive in
 > `src/core/ai/` — the source is the list; `docs/ai-layer.md` described a Phase-3 shape that no
-> longer exists and was deleted. For the *other* MCP, see [`docs/mcp.md`](./docs/mcp.md).
+> longer exists and was deleted. For the *other* MCP, see [`docs/features/mcp.md`](../features/mcp.md).
 
 The system that makes Lyra feel alive. Instead of waiting for you to ask, Lyra watches your data and speaks up when something matters.
 
@@ -450,7 +450,7 @@ Automation
 > **Historical.** The backend named below was built and then replaced: the API is now one
 > Rust binary (axum + sqlx), and SQLite is reached through sqlx with forward-only SQL
 > migrations rather than Drizzle. This document is kept as the original design intent —
-> see [docs/architecture.md](./docs/architecture.md) for what actually runs.
+> see [docs/architecture.md](../architecture/architecture.md) for what actually runs.
 
 
 | Layer | Technology | Rationale |
@@ -518,8 +518,8 @@ Features beyond the current roadmap — not planned, but designed to be possible
 
 > **Telegram shipped on 2026-08-22** and has been removed from this list. It sends alerts and
 > answers eighteen commands, eleven of them portfolio reads; quick-adding entities from it is Stage C of
-> [`docs/assistant-roadmap.md`](./docs/assistant-roadmap.md). See
-> [`docs/telegram.md`](./docs/telegram.md).
+> [`docs/assistant-roadmap.md`](../assistant-roadmap.md). See
+> [`docs/features/telegram.md`](../features/telegram.md).
 
 | Feature | Description |
 |---|---|

@@ -52,11 +52,11 @@ Two things follow from reading it as a whole:
   can ask `/today` and an MCP client can call `get_agenda`, so a task is no longer invisible outside
   the tab; but nothing out there can create or close one. The capture grammar Telegram accepts
   (`!call the accountant @Accounts`) parses the line and echoes what it *would* become, deliberately
-  writing nothing — see [the assistant roadmap](./assistant-roadmap.md).
+  writing nothing — see [the assistant roadmap](../assistant-roadmap.md).
 - **`TELEGRAM_CHAT_ID` is already an authorization boundary, not only a spam filter.** `/cancel`
   drops a queued job and `/retry` enqueues one, so the check now stands between a stranger and the
   box's work, not merely between a stranger and a balance. See
-  [`docs/telegram.md` §3](./telegram.md).
+  [`docs/features/telegram.md` §3](../features/telegram.md).
 
 ## Where inference happens
 
@@ -66,7 +66,7 @@ is called, and it runs in the page.
 So a Telegram command that needs natural language cannot be served at all, however the command
 table grows, and an LLM job would sit unrun until a browser tab happened to be open. This is the
 hardest constraint on "command it from Telegram" and it is a deliberate decision to leave in place
-for now — see [D2](./assistant-roadmap.md).
+for now — see [D2](../assistant-roadmap.md).
 
 ## Components
 
@@ -95,7 +95,7 @@ Calendar; the whole wealth surface; and the fleet and queue routes the Agents pa
 fan-out, so upstream caches are shared with the request path and an alert can never disagree with the
 page it points at; the alert sweep; the Telegram poll loop; and the four job workers.
 
-See [`docs/api-server.md`](./api-server.md).
+See [`docs/architecture/api-server.md`](./api-server.md).
 
 ### `lyra-mcp` — a second reader, not a service
 
@@ -103,13 +103,13 @@ A separate stdio binary an MCP client launches as a child. Seventeen tools — t
 reading the same SQLite file. It cannot sign by construction: there is no signing path in the crate
 and no `Sign` rung on the capability ladder, it refuses to boot with signing material in its
 environment, and secrets are scrubbed on egress. `save_analysis` is the one tool that writes, and a
-test asserts it is still the only writer on the wealth half. See [`docs/mcp.md`](./mcp.md).
+test asserts it is still the only writer on the wealth half. See [`docs/features/mcp.md`](../features/mcp.md).
 
 ### `lyra-alerts` — outbound
 
 Pure rules (readings + previous state in, alerts + new state out), a digest builder, and a
 `Channels` fan-out to Telegram and Discord where any channel succeeding counts as delivered. See
-[`docs/alerts.md`](./alerts.md).
+[`docs/features/alerts.md`](../features/alerts.md).
 
 ## Background work today
 
@@ -130,7 +130,7 @@ not send it twice. Four workers run, split by lane (two `interactive`, one `batc
 the split is isolation, not throughput — a ten-minute import must not sit in front of an answer
 someone is waiting on. Four kinds are registered: `deliver.telegram`, `digest.daily`,
 `snapshot.networth` and `schedule.tick`. `LYRA_JOBS=off` disables the workers. See
-[`docs/jobs.md`](./jobs.md).
+[`docs/architecture/jobs.md`](./jobs.md).
 
 This is why a Telegram outage at digest hour no longer costs the day's brief. `maybe_digest` decides
 the brief is *due* and enqueues `digest.daily` under the key `digest.daily:<day>`; the job's own
@@ -138,7 +138,7 @@ backoff carries past the digest hour, and the day key is stamped by the handler,
 send cannot disagree.
 
 `schedules` is **not** the queue and must not be made into one — see
-[`docs/core-engine.md`](./core-engine.md). The bridge runs one way: `schedule.tick` reads
+[`docs/architecture/core-engine.md`](./core-engine.md). The bridge runs one way: `schedule.tick` reads
 `schedules` and enqueues jobs, and `schedules` never learns the queue exists.
 
 ## Authentication
@@ -158,11 +158,11 @@ send cannot disagree.
   tolerance, whole bodies, only `fetched_at` ignored. **A gated response cannot grow a field.**
   When one needs to, the move is a new ungated route — the same move `vfat-status` made — not a
   widened one. `alerts/test` and `alerts/digest` are excluded because a GET on either sends a real
-  message. See [`docs/parity.md`](./parity.md).
+  message. See [`docs/operations/parity.md`](../operations/parity.md).
 - **Budget.** The frontend is 335 tests passing / 11 skipped, `tsc` clean, and **exactly 59 lint
   problems** — all pre-existing. Those numbers mean something only while they do not move.
 
 ## Deployment
 
 Docker Compose on the mini PC; nginx serves the built SPA and proxies `/api`. See
-[`docs/deployment.md`](./deployment.md).
+[`docs/operations/deployment.md`](../operations/deployment.md).

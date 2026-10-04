@@ -183,19 +183,19 @@ worker, no lease and no terminal state. If a failed job rewrote `nextDue` as a b
 would watch their chores silently slide.
 
 The bridge is one-directional: a `schedule.tick` job scans `schedules` and *enqueues*. `schedules`
-never learns the queue exists. `docs/core-engine.md` has been amended to say so, because it
+never learns the queue exists. `docs/architecture/core-engine.md` has been amended to say so, because it
 currently presents `Schedule` in a way that reads exactly like a job table.
 
 ### 1.9 When the docs get written
 
-The MCP design put all documentation in its final phase. The docs audit argued that `docs/mcp.md`
+The MCP design put all documentation in its final phase. The docs audit argued that `docs/features/mcp.md`
 must be written **against the current ten tools, before the expansion**, because writing it
-afterwards means never writing down what was traded away — and that `docs/jobs.md` must be written
+afterwards means never writing down what was traded away — and that `docs/architecture/jobs.md` must be written
 **from merged code**, never before, on the evidence of the deleted `docs/openclaw-integration.md`: 191 lines
 specifying a system nobody ever built, still sitting in `docs/` two phases later.
 
-**Resolved: the audit wins, and this commit acts on it.** `docs/mcp.md`, `docs/telegram.md` and
-`docs/alerts.md` are written today against what runs today. `docs/jobs.md` is written when the
+**Resolved: the audit wins, and this commit acts on it.** `docs/features/mcp.md`, `docs/features/telegram.md` and
+`docs/features/alerts.md` are written today against what runs today. `docs/architecture/jobs.md` is written when the
 queue merges.
 
 ---
@@ -279,7 +279,7 @@ spans 5770s, a little over an hour and a half.
 |---|---|---|---|
 | **E1** | **`lyra-agent`.** One OpenAI-compatible client mirroring `ai-client.ts`'s config shape, so `LYRA_AI_ENDPOINT` / `LYRA_AI_MODEL` / `LYRA_AI_KEY` serve Ollama, Groq, OpenAI or Gemini with no code change. An agent loop whose tool surface is `lyra_mcp::tools::registry()` called **in-process**, so the read-only property is inherited rather than re-argued. | L | **DECISION-BLOCKED (D2)**, blocked by D1' |
 | **E2** | **The intent front-end and the LLM handlers.** `Proposal` validated against the verb registry before dispatch; additive proposals execute and restate what was understood; mutating proposals confirm; destructive is refused outright. Handlers `ask.llm` and `capture.classify`. Every path degrades to the grammar on timeout, failure or absent config. | M | **DECISION-BLOCKED (D2)**, blocked by E1 |
-| **E3** | **Profiles, the distribution seam, and the closing docs.** `LYRA_MCP_DOMAINS=life,wealth` filtering the registry at boot, with its test. `POST /api/jobs/claim|heartbeat|complete|fail` over the same `Queue` trait, so an OOMing model worker stops being able to take the API down. `docs/jobs.md` from merged code; `docs/mcp.md` extended with the shipped write surface. | S | DECISION-INDEPENDENT, blocked by D3', E2 |
+| **E3** | **Profiles, the distribution seam, and the closing docs.** `LYRA_MCP_DOMAINS=life,wealth` filtering the registry at boot, with its test. `POST /api/jobs/claim|heartbeat|complete|fail` over the same `Queue` trait, so an OOMing model worker stops being able to take the API down. `docs/architecture/jobs.md` from merged code; `docs/features/mcp.md` extended with the shipped write surface. | S | DECISION-INDEPENDENT, blocked by D3', E2 |
 
 `capture.classify` is deliberately separate from `capture`: the note is **saved instantly** and
 enriched later, because capture must never depend on a model being up.
@@ -404,7 +404,7 @@ recoverable rather than prevented.
   `roadmap.md` were deleted, along with `productivity-features.md`, `improvements.md` and
   `ai-layer.md`; `modules.md` stayed, because its subject is still real. `git log` keeps all five.
   The multi-channel ambition the OpenClaw document was the only record of is now a paragraph in
-  `docs/telegram.md`, which is where anyone would look for it.
+  `docs/features/telegram.md`, which is where anyone would look for it.
 - **Two changelogs.** `CHANGELOG.md` had stopped at 1.3.0 while `src/lib/changelog-data.ts` runs to
   2.5.0 and ships inside the app. I have hand-written the catch-up. The permanent fix is to
   **generate `CHANGELOG.md` from `changelog-data.ts`** — roughly thirty lines, and it removes the
