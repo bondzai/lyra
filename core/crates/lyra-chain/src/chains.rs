@@ -293,6 +293,9 @@ pub static CHAINS: &[Chain] = &[
         vfat_api: true,
         ..DEFAULT
     },
+    // Avalanche: no Blockscout, so spot is the native coin only — but vfat indexes chain 43114,
+    // and LP positions parked in Sickle proxies are exactly what an indexer would miss anyway.
+    // Same shape as bnb above, and for the same reason.
     Chain {
         name: "avalanche",
         rpc: Some("https://avalanche-c-chain-rpc.publicnode.com"),
@@ -300,6 +303,8 @@ pub static CHAINS: &[Chain] = &[
             symbol: "AVAX",
             price_key: "coingecko:avalanche-2",
         }),
+        chain_id: Some(43114),
+        vfat_api: true,
         ..DEFAULT
     },
     // HyperEVM: has Blockscout (hyperscan) -> full spot. Deliberately no v3/v4 config — its
@@ -538,6 +543,26 @@ mod tests {
         for name in native_only {
             assert!(by_name(name).unwrap().rpc.is_some(), "{name} needs an RPC");
         }
+    }
+
+    /// Avalanche's LP positions come from vfat, and the id is pinned because getting it wrong
+    /// fails silently: the API answers 200 with an empty list for a chain nobody has positions
+    /// on, which is indistinguishable from a chain id that does not exist.
+    #[test]
+    fn avalanche_reads_its_lp_positions_through_vfat() {
+        let avax = by_name("avalanche").expect("avalanche is in the table");
+        assert!(
+            avax.vfat_api,
+            "without this its Sickle-parked LPs are invisible"
+        );
+        assert_eq!(avax.chain_id, Some(43114), "the C-Chain id vfat indexes by");
+        // Still no indexer, so spot stays native-only. The two are independent: vfat answers for
+        // LPs, Blockscout would answer for ERC-20s, and this chain has only the first.
+        assert!(avax.blockscout.is_none());
+        assert!(
+            avax.rpc.is_some(),
+            "the native balance still comes over RPC"
+        );
     }
 
     #[test]
